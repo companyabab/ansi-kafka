@@ -1,0 +1,6 @@
+[Ansible_test:children]
+AE_vnodes
+[Ansible_test:vars]
+kafka_version=0.11.0.0
+[AE_vnodes]
+instance-7

@@ -1,0 +1,19 @@
+#- include: dependencies.yml
+
+- name: create direcory staging and cassandra
+  file: path=/opt/kafka state=directory
+  become_user: root
+
+- stat: path=/opt/kafka
+  register: kafka_path
+
+- name: download kafka
+  copy: src=/home/ansible/ansi-kafka/kafka-{{ kafka_version }}-src.tgz dest=/opt/kafka/ owner=ansible group=ansible
+
+- name: untar kafka
+  unarchive: src=/opt/kafka/kafka-{{ kafka_version }}-src.tgz  dest=/opt/kafka/ copy=no
+
+- stat: path=/opt/kafka/kafka-{{ kafka_version }}-src.tgz
+  register: untar_path
+
+
